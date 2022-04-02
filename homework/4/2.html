@@ -49,6 +49,7 @@
 -->
 <script>
   "use strict";
+  
   function PostES5(author_name, article_title, article_text) {
   	this.author_name = author_name;
   	this.article_title = article_title;
@@ -67,6 +68,7 @@
   }
 
   AttachedPostES5.prototype = Object.create(PostES5.prototype);
+  AttachedPostES5.constructor = AttachedPostES5;
 
 	const article1 = new PostES5('Dmitriy Shuvalov','Post1 about me',`1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
 	2. Обратите внимание что пост хранит "дату и время последнего изменения
@@ -77,7 +79,7 @@
 	что-нибудь пропустить.
 	4. Если непонятно условие - задайте вопрос.`);
   console.log(article1);
-  alert("prosto pause");
+  alert("1 of 4;  prosto pause");
   article1.edit(`1. Автора поста (имени достаточно).
 2. Текст поста.`);
   console.log(article1);
@@ -86,10 +88,51 @@
 что-нибудь пропустить.
 4. Если непонятно условие - задайте вопрос.`)
 console.log(article2);
-alert("prosto pause");
+alert("2 of 4; prosto pause");
   article2.edit(`1. Автора поста (имени достаточно).
 2. Текст поста.`);
   console.log(article2);
+
+  //===================== es6 ========================
+class PostES6 {
+  constructor(author_name, article_title, article_text) {
+      this.author_name = author_name;
+      this.article_title = article_title;
+      this.article_text = article_text;
+      this.article_date = new Date();
+  }
+  edit(new_text) {
+    this.article_text = new_text;
+    this.article_date = new Date();
+  }
+}
+
+class AttachedPostES6 extends PostES6 {
+  constructor(author_name, article_title, article_text, article_highlighted=false) {
+      super(author_name, article_title, article_text);
+      this.article_highlighted = article_highlighted;
+  }
+}  
+
+
+
+const article4 = new PostES6('Dmitriy Shuvalov','Post1 about me',`1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
+2. Обратите внимание что пост хранит "дату и время последнего изменения
+поста", это значит что если пост кто-то изменит`);
+console.log(article4);
+alert("3 of 4; prosto pause");
+article4.edit(`1. Автора поста (имени достаточно).
+2. Текст поста.`);
+console.log(article4);
+
+const article5 = new AttachedPostES6('Dmitriy Shuvalov','Post5 about me',`1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
+2. Обратите внимание что пост хранит "дату и время последнего изменения`);
+console.log(article5);
+alert("4 of 4; prosto pause");
+article5.edit(`1. Автора поста (имени достаточно).
+2. Текст поста.`);
+console.log(article5);
+
 
 </script>
 </body>
