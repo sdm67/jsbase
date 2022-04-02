@@ -20,7 +20,35 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  function ProductES5(product_name, product_price) {
+  	this.product_name = product_name;
+  	this.product_price = product_price;
+  }
+  ProductES5.prototype.make25Discount = function() {
+  	this.product_price = .75 * this.product_price;
+  }
+
+
+  let product1 = new ProductES5('огурец', 100);
+  console.log(`Товар ${product1.product_name} стоит ${product1.product_price} rub`);
+  product1.make25Discount();
+  console.log(`Товар ${product1.product_name} стоит со скидкой ${product1.product_price} rub`);
+
+  class ProductES6 {
+  	constructor(product_name, product_price) {
+	  	this.product_name = product_name;
+	  	this.product_price = product_price;
+	  }
+	make25Discount() {
+  		this.product_price = .75 * this.product_price;
+  	}
+  }
+
+  let product2 = new ProductES6('помидорцык', 200);
+
+  console.log(`Товар ${product2.product_name} стоит ${product2.product_price} rub`);
+  product2.make25Discount();
+  console.log(`Товар ${product2.product_name} стоит со скидкой ${product2.product_price} rub`);
 </script>
 </body>
 </html>
